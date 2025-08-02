@@ -1,11 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usúario</title>
+    <title>Perfil do Usuário</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            background-image: url('{{ url_for("static", filename="bemvindodevolta.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-card {
+            background-color: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .welcome-text {
+            font-size: 1.3rem;
+            background-color: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .user-name {
+            font-weight: bold;
+            color: #4CAF50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+        }
+        
+        .nav-links a {
+            margin: 10px;
+            color: white;
+            text-decoration: none;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .extra-page-btn {
+            background-color: #4CAF50 !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 15px 25px !important;
+        }
+        
+        .extra-page-btn:hover {
+            background-color: #45a049 !important;
+        }
+    </style>
 </head>
 <body>
-    <p>Bem vindo de volta {{nome_usuario}}</p>
+    <div class="profile-card">
+        <h1>Perfil do Usuário</h1>
+        <p class="welcome-text">Bem vindo de volta <span class="user-name">{{nome_usuario}}</span></p>
+        
+        <div class="nav-links">
+            <a href="/homepage?nome={{nome_usuario}}" class="extra-page-btn">📄 Ir para o site</a>
+            <br><br>
+            <a href="/contatos">📞 Contatos</a>
+        </div>
+    </div>
 </body>
 </html>

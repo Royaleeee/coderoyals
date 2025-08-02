@@ -1,11 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Login</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-image: url('{{ url_for("static", filename="login.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: rgba(0,0,0,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .nav-links a {
+            margin: 10px;
+            color: white;
+            text-decoration: none;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .user-form {
+            background-color: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.9);
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(76,175,80,0.5);
+        }
+        
+        .form-group input[type="password"] {
+            letter-spacing: 2px;
+        }
+        
+        .user-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .user-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <p>Bem vindo ao site CODE ROYALS</p>
+    <div class="container">
+        <h1>🔐 Login - CODE ROYALS</h1>
+        <p>Faça login para acessar seu perfil</p>
+        <img src="{{ url_for('static',filename='imagem.jpg') }}" alt="imagem">
+        
+        <!-- Formulário para login -->
+        <div class="user-form">
+            <h3>👤 Acessar Perfil do Usuário</h3>
+            <form action="/usuarios" method="GET">
+                <div class="form-group">
+                    <label for="username">👤 Nome de Usuário:</label>
+                    <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="senha">🔒 Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+                
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/registrar">📝 Registrar</a>
+        <a href="/contatos">📞 Contato</a>
+    </div>
 </body>
 </html>

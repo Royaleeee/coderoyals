@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-image: url('{{ url_for("static", filename="login.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cadastro-container {
+            background-color: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .form-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.9);
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(76,175,80,0.5);
+        }
+        
+        .form-group input[type="password"] {
+            letter-spacing: 2px;
+        }
+        
+        .form-group input[type="email"] {
+            font-family: Arial, sans-serif;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .cadastro-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cadastro-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .password-requirements {
+            background-color: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 12px;
+            text-align: left;
+        }
+        
+        .error-message {
+            background-color: rgba(255,0,0,0.2);
+            color: #ff6b6b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b6b;
+            text-align: left;
+        }
+        
+        .success-message {
+            background-color: rgba(76,175,80,0.2);
+            color: #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="cadastro-container">
+        <h1>📝 Registrar</h1>
+        
+        {% if erro %}
+        <div class="error-message">
+            <strong>❌ Erro:</strong> {{ erro }}
+        </div>
+        {% endif %}
+        
+        {% if sucesso %}
+        <div class="success-message">
+            <strong>✅ Sucesso:</strong> {{ sucesso }}
+        </div>
+        {% endif %}
+        
+        <form action="/registrar" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nome">👤 Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sobrenome">👤 Sobrenome:</label>
+                    <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">👤 Nome de Usuário:</label>
+                <input type="text" id="username" name="username" placeholder="Digite um nome de usuário único" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">📧 Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone">📞 Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="senha">🔒 Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite uma senha forte" required>
+                <div class="password-requirements">
+                    <p><strong>Requisitos da senha:</strong></p>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li>Mínimo 8 caracteres</li>
+                        <li>Pelo menos 1 número</li>
+                        <li>Pelo menos 1 letra maiúscula</li>
+                        <li>Pelo menos 1 letra minúscula</li>
+                        <li>Pelo menos 1 caractere especial (!@#$%^&*)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmar_senha">🔒 Confirmar Senha:</label>
+                <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Digite a senha novamente" required>
+            </div>
+            
+            <button type="submit" class="cadastro-btn">📝 Registrar</button>
+        </form>
+        
+        <div class="back-link">
+            <a href="/">← Voltar para Login</a>
+        </div>
+    </div>
+</body>
+</html> 
